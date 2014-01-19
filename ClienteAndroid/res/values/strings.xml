@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">RSS Android</string>
+
+    <!-- Action bar items -->
+    <string name="action_refresh">Atualizar</string>
+    <string name="action_settings">Opções</string>
+    <string name="action_connect">Connectar</string>
+    <string name="action_disconect">Disconnectar</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="icon">Icon</string>
+    <string name="abreus_home">Abreus Home</string>
+
+</resources>

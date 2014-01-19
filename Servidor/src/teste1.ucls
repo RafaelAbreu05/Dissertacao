@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.4" icons="true" always-add-relationships="true" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true">  
+  <package id="1" language="java" name="baseDados" project="Servidor" file="/Servidor/src/baseDados" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="147" width="281" x="36" y="555"/>    
+    <display autosize="false" stereotype="true" accessors="true"/>  
+  </package>  
+  <class id="2" language="java" name="baseDados.BaseDados" project="Servidor" 
+    file="/Servidor/src/baseDados/BaseDados.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="258" y="654"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="baseDados.Querys" project="Servidor" file="/Servidor/src/baseDados/Querys.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="122" y="654"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <package id="4" language="java" name="interfaceServidor" project="Servidor" file="/Servidor/src/interfaceServidor" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="220" width="305" x="38" y="182"/>    
+    <display autosize="false" stereotype="true" accessors="true"/>  
+  </package>  
+  <class id="5" language="java" name="interfaceServidor.MenuPrincipal.ButtonColumn" project="Servidor" 
+    file="/Servidor/src/interfaceServidor/MenuPrincipal.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="101" y="343"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="interfaceServidor.JTextFieldLimit" project="Servidor" 
+    file="/Servidor/src/interfaceServidor/JTextFieldLimit.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="109" y="263"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="interfaceServidor.PanZoom" project="Servidor" 
+    file="/Servidor/src/interfaceServidor/PanZoom.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="253" y="255"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <package id="8" language="java" name="carregarPlanta" project="Servidor" file="/Servidor/src/carregarPlanta" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="151" width="266" x="244" y="6"/>    
+    <display autosize="false" stereotype="true" accessors="true"/>  
+  </package>  
+  <class id="9" language="java" name="carregarPlanta.Utils" project="Servidor" 
+    file="/Servidor/src/carregarPlanta/Utils.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="450" y="130"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <package id="10" language="java" name="servidorTCP" project="Servidor" file="/Servidor/src/servidorTCP" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="250" width="310" x="364" y="455"/>    
+    <display autosize="false" stereotype="true" accessors="true"/>  
+  </package>  
+  <class id="11" language="java" name="servidorTCP.EnviarPlanta" project="Servidor" 
+    file="/Servidor/src/servidorTCP/EnviarPlanta.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="441" y="533"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="servidorTCP.EnviarPontosAcesso" project="Servidor" 
+    file="/Servidor/src/servidorTCP/EnviarPontosAcesso.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="595" y="531"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <interface id="13" language="java" name="servidorTCP.ServidorTCP.OnMessageReceived" project="Servidor" 
+    file="/Servidor/src/servidorTCP/ServidorTCP.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="591" y="679"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </interface>  
+  <class id="14" language="java" name="servidorTCP.ServidorTCP" project="Servidor" 
+    file="/Servidor/src/servidorTCP/ServidorTCP.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="507" y="609"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="15" language="java" name="servidorTCP.TranferirSinais" project="Servidor" 
+    file="/Servidor/src/servidorTCP/TranferirSinais.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="436" y="677"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <package id="16" language="java" name="sistemaLocalizacao" project="Servidor" file="/Servidor/src/sistemaLocalizacao" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="129" width="199" x="37" y="418"/>    
+    <display autosize="false" stereotype="true" accessors="true"/>  
+  </package>  
+  <class id="17" language="java" name="sistemaLocalizacao.SistemaLocalizacao" project="Servidor" 
+    file="/Servidor/src/sistemaLocalizacao/SistemaLocalizacao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="122" y="504"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <package id="18" language="java" name="classes" project="ClienteAndroid" file="/ClienteAndroid/src/classes" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="255" width="308" x="364" y="183"/>    
+    <display autosize="false" stereotype="true" accessors="true"/>  
+  </package>  
+  <class id="19" language="java" name="classes.Coordenadas" project="ClienteAndroid" 
+    file="/ClienteAndroid/src/classes/Coordenadas.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="469" y="406"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="20" language="java" name="carregarPlanta.ImageFileView" project="Servidor" 
+    file="/Servidor/src/carregarPlanta/ImageFileView.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="313" y="129"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="21" language="java" name="carregarPlanta.ImageFilter" project="Servidor" 
+    file="/Servidor/src/carregarPlanta/ImageFilter.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="451" y="77"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="22" language="java" name="carregarPlanta.ImagePreview" project="Servidor" 
+    file="/Servidor/src/carregarPlanta/ImagePreview.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="313" y="77"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="23" language="java" name="interfaceServidor.MenuPrincipal" project="Servidor" 
+    file="/Servidor/src/interfaceServidor/MenuPrincipal.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="74" width="139" x="190" y="305"/>    
+    <display autosize="false" stereotype="true" package="false" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="24" language="java" name="classes.DataSinais" project="ClienteAndroid" 
+    file="/ClienteAndroid/src/classes/DataSinais.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="600" y="256"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="25" language="java" name="classes.Escala" project="ClienteAndroid" 
+    file="/ClienteAndroid/src/classes/Escala.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="476" y="340"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="26" language="java" name="classes.Planta" project="ClienteAndroid" 
+    file="/ClienteAndroid/src/classes/Planta.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="477" y="255"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="27" language="java" name="classes.PontoAcesso" project="ClienteAndroid" 
+    file="/ClienteAndroid/src/classes/PontoAcesso.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="602" y="407"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="28" language="java" name="classes.Sinal" project="ClienteAndroid" 
+    file="/ClienteAndroid/src/classes/Sinal.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="46" width="94" x="556" y="314"/>    
+    <display autosize="false" stereotype="true" package="false" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <association id="29">    
+    <bendpoint x="329" y="315"/>    
+    <bendpoint x="460" y="315"/>    
+    <end type="SOURCE" refId="23" navigable="false">      
+      <attribute id="30" name="plant"/>      
+      <multiplicity id="31" minimum="0" maximum="1">        
+        <position height="16" width="23" x="440" y="274"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="26" navigable="true"/>    
+    <display labels="false" multiplicity="true"/>  
+  </association>  
+  <dependency id="32">    
+    <end type="SOURCE" refId="21"/>    
+    <end type="TARGET" refId="9"/>  
+  </dependency>  
+  <association id="33">    
+    <bendpoint x="253" y="307"/>    
+    <end type="SOURCE" refId="23" navigable="false">      
+      <attribute id="34" name="imagemTreino"/>      
+      <multiplicity id="35" minimum="0" maximum="1">        
+        <position height="16" width="23" x="225" y="275"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="false" multiplicity="true"/>  
+  </association>  
+  <association id="36">    
+    <end type="SOURCE" refId="23" navigable="false">      
+      <attribute id="37" name="escala"/>      
+      <multiplicity id="38" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="25" navigable="true"/>    
+    <display labels="false" multiplicity="true"/>  
+  </association>  
+  <dependency id="39">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="11"/>  
+  </dependency>  
+  <dependency id="40">    
+    <bendpoint x="190" y="312"/>    
+    <bendpoint x="110" y="312"/>    
+    <end type="SOURCE" refId="23"/>    
+    <end type="TARGET" refId="6"/>  
+  </dependency>  
+  <association id="41">    
+    <null/>    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="42" name="planta"/>      
+      <multiplicity id="43" minimum="0" maximum="1">        
+        <position height="16" width="23" x="478" y="277"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="26" navigable="true"/>    
+    <display labels="false" multiplicity="true"/>  
+  </association>  
+  <association id="44">    
+    <end type="SOURCE" refId="23" navigable="false">      
+      <attribute id="45" name="bd"/>      
+      <multiplicity id="46" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="false" multiplicity="true"/>  
+  </association>  
+  <nesting id="47">    
+    <end type="SOURCE" refId="23"/>    
+    <end type="TARGET" refId="5"/>  
+  </nesting>  
+  <association id="48">    
+    <bendpoint x="292" y="378"/>    
+    <bendpoint x="292" y="416"/>    
+    <bendpoint x="417" y="416"/>    
+    <end type="SOURCE" refId="23" navigable="false">      
+      <attribute id="49" name="coordenadas"/>      
+      <multiplicity id="50" minimum="0" maximum="2147483647">        
+        <position height="16" width="21" x="387" y="400"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="19" navigable="true"/>    
+    <display labels="false" multiplicity="true"/>  
+  </association>  
+  <dependency id="51">    
+    <end type="SOURCE" refId="20"/>    
+    <end type="TARGET" refId="9"/>  
+  </dependency>  
+  <dependency id="52">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="15"/>  
+  </dependency>  
+  <dependency id="53">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="3"/>  
+  </dependency>  
+  <association id="54">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="55" name="planta"/>      
+      <multiplicity id="56" minimum="0" maximum="1">        
+        <position height="16" width="23" x="405" y="238"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="26" navigable="true"/>    
+    <display labels="false" multiplicity="true"/>  
+  </association>  
+  <association id="57">    
+    <bendpoint x="254" y="173"/>    
+    <bendpoint x="680" y="173"/>    
+    <bendpoint x="680" y="407"/>    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="58" name="pontosAcesso"/>      
+      <multiplicity id="59" minimum="0" maximum="2147483647">        
+        <position height="16" width="21" x="659" y="408"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="27" navigable="true"/>    
+    <display labels="false" multiplicity="true"/>  
+  </association>  
+  <association id="60">    
+    <end type="SOURCE" refId="28" navigable="false">      
+      <attribute id="61" name="pontoAcesso"/>      
+      <multiplicity id="62" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="27" navigable="true"/>    
+    <display labels="false" multiplicity="true"/>  
+  </association>  
+  <association id="63">    
+    <end type="SOURCE" refId="27" navigable="false">      
+      <attribute id="64" name="local"/>      
+      <multiplicity id="65" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="19" navigable="true"/>    
+    <display labels="false" multiplicity="true"/>  
+  </association>  
+  <association id="66">    
+    <bendpoint x="277" y="377"/>    
+    <bendpoint x="277" y="449"/>    
+    <bendpoint x="602" y="449"/>    
+    <end type="SOURCE" refId="23" navigable="false">      
+      <attribute id="67" name="pontosAcesso"/>      
+      <multiplicity id="68" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="27" navigable="true"/>    
+    <display labels="false" multiplicity="true"/>  
+  </association>  
+  <association id="69">    
+    <bendpoint x="270" y="379"/>    
+    <bendpoint x="270" y="541"/>    
+    <bendpoint x="339" y="541"/>    
+    <bendpoint x="339" y="609"/>    
+    <end type="SOURCE" refId="23" navigable="false">      
+      <attribute id="70" name="mServer"/>      
+      <multiplicity id="71" minimum="0" maximum="1">        
+        <position height="16" width="23" x="509" y="633"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="14" navigable="true"/>    
+    <display labels="false" multiplicity="true"/>  
+  </association>  
+  <dependency id="72">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="12"/>  
+  </dependency>  
+  <association id="73">    
+    <end type="SOURCE" refId="14" navigable="false">      
+      <attribute id="74" name="messageListener"/>      
+      <multiplicity id="75" minimum="0" maximum="1">        
+        <position height="16" width="23" x="574" y="638"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="13" navigable="true"/>    
+    <display labels="false" multiplicity="true"/>  
+  </association>  
+  <association id="76">    
+    <bendpoint x="245" y="380"/>    
+    <bendpoint x="245" y="505"/>    
+    <end type="SOURCE" refId="23" navigable="false">      
+      <attribute id="77" name="sistemaLocalizacao"/>      
+      <multiplicity id="78" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="17" navigable="true"/>    
+    <display labels="false" multiplicity="true"/>  
+  </association>  
+  <association id="79">    
+    <bendpoint x="295" y="269"/>    
+    <bendpoint x="353" y="269"/>    
+    <bendpoint x="353" y="389"/>    
+    <bendpoint x="419" y="389"/>    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="80" name="posicaoCalculada"/>      
+      <multiplicity id="81" minimum="0" maximum="1">        
+        <position height="16" width="23" x="388" y="368"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="19" navigable="true"/>    
+    <display labels="false" multiplicity="true"/>  
+  </association>  
+  <classifier-display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
+    accessors="true" visibility="true">    
+    <attributes public="false" package="false" protected="false" private="false" static="false"/>    
+    <operations public="false" package="false" protected="false" private="false" static="false"/>  
+  </classifier-display>  
+  <association-display labels="false" multiplicity="true"/>
+</class-diagram>

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.actionbarsherlock.sample.knownbugs"
+    android:versionCode="431"
+    android:versionName="4.3.1" >
+
+    <uses-sdk
+        android:minSdkVersion="7"
+        android:targetSdkVersion="16" />
+
+    <uses-feature
+        android:name="android.hardware.touchscreen"
+        android:required="false" />
+
+    <application
+        android:icon="@drawable/icon"
+        android:label="@string/application_name"
+        android:theme="@style/Theme.Sherlock" >
+        <activity
+            android:name=".SampleList"
+            android:label="@string/activity_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- OPEN BUGS -->
+
+        <activity
+            android:name=".Issue240"
+            android:label="Issue #240" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.actionbarsherlock.sample.knownbugs.OPEN" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Issue272"
+            android:label="Issue #272" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.actionbarsherlock.sample.knownbugs.OPEN" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Issue331"
+            android:label="Issue #331" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.actionbarsherlock.sample.knownbugs.OPEN" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Issue738"
+            android:label="Issue #738" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.actionbarsherlock.sample.knownbugs.OPEN" />
+            </intent-filter>
+        </activity>
+
+        <!-- CLOSED BUGS -->
+
+        <activity
+            android:name=".Issue379"
+            android:label="Issue #379"
+            android:theme="@style/Theme.Issue379"
+            android:uiOptions="splitActionBarWhenNarrow" >
+
+            <!-- Fixed in 4.2.0 -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.actionbarsherlock.sample.knownbugs.CLOSED" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Issue435"
+            android:label="Issue #425" >
+
+            <!-- Fixed in 4.1.0 -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.actionbarsherlock.sample.knownbugs.CLOSED" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Issue659"
+            android:label="Issue #659" >
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.actionbarsherlock.sample.knownbugs.CLOSED" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable_issue659"
+                android:value=".Issue659" />
+        </activity>
+
+        <provider
+            android:name=".Issue659SuggestionsProvider"
+            android:authorities="com.actionbarsherlock.sample.knownbugs.Issue659SuggestionsProvider" />
+
+        <activity
+            android:name=".Issue882"
+            android:label="Issue #882" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.actionbarsherlock.sample.knownbugs.CLOSED" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
