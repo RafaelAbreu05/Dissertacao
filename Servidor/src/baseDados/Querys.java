@@ -10,7 +10,7 @@ public class Querys {
 	// Insert
 	public static final String novoPontoAcesso = "INSERT INTO ponto_acesso (id_coordenadas, bssid, ssid) VALUES (?,?,?);";
 	// Update
-	public static final String atualizarPontoAcesso = "UPDATE ponto_acesso SET id_coordenadas = ?, bssid = ?, ssid = ? WHERE id_pontoAcesso = ?";
+	public static final String atualizarPontoAcesso = "UPDATE ponto_acesso SET bssid = ?, ssid = ?, id_coordenadas = ? WHERE id_pontoAcesso = ?";
 	// Delete
 	public static final String removerPontoAcesso = "DELETE FROM ponto_acesso WHERE id_pontoAcesso = ?";
 

@@ -27,7 +27,7 @@ import classes.Sinal;
 public class BaseDados {
 	private String userName = "root";
 	private String password = "";
-	private String url = "jdbc:mysql://localhost/localizacaoindoor_quarto";
+	private String url = "jdbc:mysql://localhost/localizacaoindoor_casa";
 	private Connection conn = null;
 
 	public Connection getConn() {
@@ -79,12 +79,12 @@ public class BaseDados {
 					PreparedStatement statement = conn.prepareStatement(
 							Querys.novoPontoAcesso,
 							PreparedStatement.RETURN_GENERATED_KEYS);
-					statement.setString(1, p.getBSSID());
-					statement.setString(2, p.getSSID());
 					if (id_coodenadas != 0)
-						statement.setInt(3, id_coodenadas);
+						statement.setInt(1, id_coodenadas);
 					else
-						statement.setNull(3, Types.INTEGER);
+						statement.setNull(1, Types.INTEGER);
+					statement.setString(2, p.getBSSID());
+					statement.setString(3, p.getSSID());
 					statement.executeUpdate();
 					ResultSet idGerado = statement.getGeneratedKeys();
 					if (idGerado.next() && idGerado != null) {
@@ -211,14 +211,14 @@ public class BaseDados {
 
 			PreparedStatement statement = conn
 					.prepareStatement(Querys.atualizarPontoAcesso);
-			statement.setInt(1, pontoAcesso.getID());
-			statement.setString(2, pontoAcesso.getBSSID());
-			statement.setString(3, pontoAcesso.getSSID());
+			statement.setString(1, pontoAcesso.getBSSID());
+			statement.setString(2, pontoAcesso.getSSID());
 			if (pontoAcesso.getCoordenadas() != null
 					&& pontoAcesso.getCoordenadas().getID() != 0)
-				statement.setInt(4, pontoAcesso.getCoordenadas().getID());
+				statement.setInt(3, pontoAcesso.getCoordenadas().getID());
 			else
-				statement.setNull(4, Types.INTEGER);
+				statement.setNull(3, Types.INTEGER);
+			statement.setInt(4, pontoAcesso.getID());
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

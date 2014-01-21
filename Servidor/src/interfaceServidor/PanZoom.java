@@ -45,6 +45,7 @@ public class PanZoom extends JComponent {
 	private BufferedImage icon = null;
 	private TreeMap<Integer, PontoAcesso> pontosAcesso;
 	private TreeMap<Coordenadas, ArrayList<Sinal>> sinais;
+	private int pos = 0;
 
 	/** Construtores */
 	public PanZoom(Planta planta, int pos,
@@ -52,8 +53,8 @@ public class PanZoom extends JComponent {
 		this.planta = planta;
 		this.pontosAcesso = pontosAcesso;
 		this.sinais = new TreeMap<Coordenadas, ArrayList<Sinal>>();
-
-		adicionarListerners(pos);
+		this.pos = pos; 
+		adicionarListerners();
 	}
 
 	public PanZoom(Planta planta, int pos,
@@ -62,8 +63,8 @@ public class PanZoom extends JComponent {
 		this.planta = planta;
 		this.pontosAcesso = pontosAcesso;
 		this.sinais = sinais;
-
-		adicionarListerners(pos);
+		this.pos = pos;
+		adicionarListerners();
 	}
 
 	/** Gets */
@@ -113,7 +114,7 @@ public class PanZoom extends JComponent {
 	}
 
 	/** Funções Auxiliares */
-	public void adicionarListerners(int pos) {
+	public void adicionarListerners() {
 		addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
 				previousX = e.getX();
@@ -209,13 +210,13 @@ public class PanZoom extends JComponent {
 		if (testeX >= 0 && testeY >= 0) {
 			desenharPin();
 		}
-		if (!pontosAcesso.isEmpty()) {
+		if (!pontosAcesso.isEmpty() && pos != 1) {
 			desenharPontosAcesso();
 		}
-		if (sinais != null || !sinais.isEmpty()) {
+		if (sinais != null && !sinais.isEmpty() && pos == 3) {
 			desenharSinais();
 		}
-		if (posicaoCalculada != null) {
+		if (posicaoCalculada != null && pos >= 3  ) {
 			desenharPosicaoCalculada();
 		}
 		g2d.dispose();

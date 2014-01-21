@@ -63,6 +63,7 @@ import classes.Escala;
 import classes.Planta;
 import classes.PontoAcesso;
 import classes.Sinal;
+import java.awt.Font;
 
 @SuppressWarnings("serial")
 public class MenuPrincipal extends JPanel {
@@ -84,11 +85,13 @@ public class MenuPrincipal extends JPanel {
 	private JPanel panel_19;
 	private JPanel panel_2;
 	private JPanel panel_9;
+	private JPanel panel_13;
 
 	/** Panel */
 	private Panel panel_21 = new Panel();
 	private Panel panel_11 = new Panel();
 	private Panel panel_17 = new Panel();
+	private Panel panel_30 = new Panel();
 
 	/** JTextField */
 	private JTextField txtNomeDaRede;
@@ -122,6 +125,7 @@ public class MenuPrincipal extends JPanel {
 	private JButton iniciarServidor;
 	private JButton pararServidor;
 	private JButton carregarPlanta;
+	private JButton localizar;
 
 	/** JTable */
 	private JTable tablePontosAcesso;
@@ -141,6 +145,7 @@ public class MenuPrincipal extends JPanel {
 	private PanZoom imagemPlanta = null;
 	private PanZoom imagemPosicionarPA = null;
 	private PanZoom imagemTreino = null;
+	private PanZoom imagemLocalizacao = null;
 
 	// Servidor
 	static ServidorTCP mServer = null;
@@ -157,6 +162,7 @@ public class MenuPrincipal extends JPanel {
 	private File file = null;
 	private Escala escala = null;
 	private SistemaLocalizacao sistemaLocalizacao = null;
+
 
 	/** Conteudo para a Janela */
 	public MenuPrincipal() {
@@ -214,13 +220,13 @@ public class MenuPrincipal extends JPanel {
 		tabbedPane.setMnemonicAt(3, KeyEvent.VK_4);
 
 		// Aba 5
-		JComponent panel5 = Divisoes();
-		tabbedPane.addTab("Divisões", icon5, panel5, "Divisões");
+		JComponent panel5 = FaseTreino();
+		tabbedPane.addTab("Fase de Treino", icon5, panel5, "Fase de Treino");
 		tabbedPane.setMnemonicAt(4, KeyEvent.VK_5);
-
+		
 		// Aba 6
-		JComponent panel6 = FaseTreino();
-		tabbedPane.addTab("Fase de Treino", icon6, panel6, "Fase de Treino");
+		JComponent panel6 = Localizacao();
+		tabbedPane.addTab("Localizacão", icon6, panel6, "Localizacão");
 		tabbedPane.setMnemonicAt(5, KeyEvent.VK_6);
 
 		// Adicionar as Abas ao Painel
@@ -1265,13 +1271,7 @@ public class MenuPrincipal extends JPanel {
 		return pPontosAcesso;
 	}
 
-	/** Aba 5 - Divisões */
-	protected JComponent Divisoes() {
-		JPanel divisoes = new JPanel(false);
-		return divisoes;
-	}
-
-	/** Aba 6 - Fase de Treino */
+	/** Aba 5 - Fase de Treino */
 	protected JComponent FaseTreino() {
 		JPanel faseTreino = new JPanel(false);
 		GridBagLayout gbl_faseTreino = new GridBagLayout();
@@ -1300,6 +1300,61 @@ public class MenuPrincipal extends JPanel {
 		gbc_splitPane.gridy = 0;
 		faseTreino.add(splitPane_1, gbc_splitPane);
 		return faseTreino;
+	}
+	
+	/** Aba 6 - Localização */
+	protected JComponent Localizacao() {
+		JPanel localizacao = new JPanel(false);
+		GridBagLayout gbl_faseTreino = new GridBagLayout();
+		gbl_faseTreino.columnWidths = new int[] { 445 };
+		gbl_faseTreino.rowHeights = new int[] { 242, 161, 0 };
+		gbl_faseTreino.columnWeights = new double[] { 1.0 };
+		gbl_faseTreino.rowWeights = new double[] { 1.0, 1.0, Double.MIN_VALUE };
+		localizacao.setLayout(gbl_faseTreino);
+		
+		panel_13 = new JPanel();
+
+		panel_30.setLayout(new BoxLayout(panel_30, BoxLayout.X_AXIS));
+
+		JSplitPane splitPane_2 = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
+		splitPane_2.setLeftComponent(panel_13);
+		splitPane_2.setRightComponent(panel_30);
+		panel_13.setLayout(new BorderLayout(0, 0));
+		
+		localizar = new JButton("Localizar");
+		localizar.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		
+		ImageIcon iconOn = createImageIcon("../imagens/sinal.png");
+		localizar.setIcon(iconOn);
+		localizar
+				.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+		iniciarServidor.setVerticalAlignment(javax.swing.SwingConstants.CENTER);
+		iniciarServidor
+				.setVerticalTextPosition(javax.swing.SwingConstants.CENTER);
+		
+		localizar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ArrayList<Sinal> s = mServer.pedidoSinal();
+				imagemLocalizacao.setPosicaoCalculada(null);
+				if (!s.isEmpty()) {
+					
+					imagemLocalizacao.setPosicaoCalculada(sistemaLocalizacao
+							.triangulacaoDistancias3(s));
+					
+					System.out.println(sistemaLocalizacao
+							.triangulacaoDistancias3(s).toString());
+				}
+			}
+		});
+		panel_13.add(localizar);
+		GridBagConstraints gbc_splitPane = new GridBagConstraints();
+		gbc_splitPane.gridheight = 2;
+		gbc_splitPane.fill = GridBagConstraints.BOTH;
+		gbc_splitPane.gridx = 0;
+		gbc_splitPane.gridy = 0;
+		localizacao.add(splitPane_2, gbc_splitPane);
+		
+		return localizacao;
 	}
 
 	// Funcções Auxiliares
@@ -1332,25 +1387,24 @@ public class MenuPrincipal extends JPanel {
 		tablePosicaoPA.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent evt) {
 				// Determinhar linha selecionada
+				
 				if (imagemPlanta != null && imagemPosicionarPA != null
 						&& imagemPosicionarPA.getPX() != 0.0
 						&& imagemPosicionarPA.getPY() != 0.0) {
-
 					Coordenadas c = new Coordenadas(imagemPosicionarPA.getPX(),
 							imagemPosicionarPA.getPY());
-
-					// c =
+					
+					//c =
 					// escala.pixelToCoordenadas(imagemPosicionarPA.getPX(),imagemPosicionarPA.getPY());
 
 					// c = escala.coordenadasToPixel(c);
 
 					int id = bd.novasCoordenadas(c);
 					c.setID(id);
-
+					
 					ListSelectionModel model = tablePosicaoPA
 							.getSelectionModel();
 					int linha = model.getLeadSelectionIndex();
-
 					pontosAcesso.get(linha + 1).setCoordenadas(c);
 					bd.atualizarPontoAcesso(pontosAcesso.get(linha + 1));
 					imagemPosicionarPA.setPontosAcesso(pontosAcesso);
@@ -1364,8 +1418,7 @@ public class MenuPrincipal extends JPanel {
 		});
 
 		String[] columnNames2 = { "Posição", "Nome da rede (SSID)",
-				"Endereço MAC (BSSID)", "Frequência", "Nível",
-				"Distância Real (m)", "Distância Calculada (m)", "Erro (m)",
+				"Endereço MAC (BSSID)", "Frequência", "Nível", "Erro (m)",
 				"Remover" };
 
 		Object[][] dataTreino = {};
@@ -1379,17 +1432,19 @@ public class MenuPrincipal extends JPanel {
 		tableTreino = new JTable(model2);
 		tableTreino.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent evt) {
-				if (tableTreino.getSelectedColumn() != 8
+				if (tableTreino.getSelectedColumn() != 6
 						&& imagemTreino != null && imagemTreino.getPX() != 0.0
 						&& imagemTreino.getPY() != 0.0) {
-
+					
 					Coordenadas c = new Coordenadas(imagemTreino.getPX(),
 							imagemTreino.getPY());
-					// c =
-					// escala.pixelToCoordenadas(imagemTreino.getPX(),imagemTreino.getPY());
+					//Coordenadas c = escala.pixelToCoordenadas(imagemTreino.getPX(),imagemTreino.getPY());
 
 					int id = bd.novasCoordenadas(c);
+
+					
 					c.setID(id);
+
 
 					ArrayList<Sinal> s = mServer.pedidoSinal();
 					imagemTreino.setPosicaoCalculada(null);
@@ -1417,7 +1472,7 @@ public class MenuPrincipal extends JPanel {
 		ButtonColumn buttonColumnPontosAcesso = new ButtonColumn(3,
 				tablePontosAcesso);
 		@SuppressWarnings("unused")
-		ButtonColumn buttonColumnTreino = new ButtonColumn(8, tableTreino);
+		ButtonColumn buttonColumnTreino = new ButtonColumn(6, tableTreino);
 	}
 
 	/**
@@ -1460,12 +1515,14 @@ public class MenuPrincipal extends JPanel {
 			imagemPlanta.setPlanta(plant);
 			imagemPosicionarPA.setPlanta(plant);
 			imagemTreino.setPlanta(plant);
+			imagemLocalizacao.setPlanta(plant);
 			return;
 		}
 
 		imagemPlanta = new PanZoom(plant, 1, pontosAcesso);
 		imagemPosicionarPA = new PanZoom(plant, 2, pontosAcesso);
 		imagemTreino = new PanZoom(plant, 3, pontosAcesso, sinais);
+		imagemLocalizacao = new PanZoom(plant, 4, pontosAcesso, sinais);
 
 		JScrollPane jscrollpane = new JScrollPane(imagemPlanta,
 				ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
@@ -1474,6 +1531,9 @@ public class MenuPrincipal extends JPanel {
 				ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
 				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		JScrollPane jscrollpane2 = new JScrollPane(imagemTreino,
+				ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
+				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		JScrollPane jscrollpane3 = new JScrollPane(imagemLocalizacao,
 				ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
 				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
@@ -1489,11 +1549,15 @@ public class MenuPrincipal extends JPanel {
 		gbc_jscrollpane.fill = GridBagConstraints.BOTH;
 		gbc_jscrollpane.gridx = 0;
 		gbc_jscrollpane.gridy = 0;
+		GridBagConstraints gbc_jscrollpane3 = new GridBagConstraints();
+		gbc_jscrollpane.fill = GridBagConstraints.BOTH;
+		gbc_jscrollpane.gridx = 0;
+		gbc_jscrollpane.gridy = 0;
 
 		panel_11.add(jscrollpane, gbc_jscrollpane);
 		panel_21.add(jscrollpane1, gbc_jscrollpane1);
 		panel_17.add(jscrollpane2, gbc_jscrollpane2);
-
+		panel_30.add(jscrollpane3, gbc_jscrollpane3);
 		repaint();
 	}
 
@@ -1630,15 +1694,15 @@ public class MenuPrincipal extends JPanel {
 						.triangulacaoDistancias3(sinaisArray);
 
 				for (Sinal sinal : sinaisArray) {
-					String distanciaReal = "Desconhecido";
-					String distanciaCalculada = "Desconhecido";
+					//String distanciaReal = "Desconhecido";
+					//String distanciaCalculada = "Desconhecido";
 					String erro = "Desconhecido";
 					if (sinal.getPontoAcesso().getCoordenadas() != null
 							&& coordenadaCalculada != null) {
 						DecimalFormat df = new DecimalFormat("#.##");
-
-						double distanciaC = sistemaLocalizacao.ditancia(sinal
-								.getPontoAcesso().getCoordenadas(),
+						
+						/*
+						double distanciaC = sistemaLocalizacao.ditancia(coord,
 								coordenadaCalculada, escala);
 						double distanciaR = sistemaLocalizacao.ditancia(sinal
 								.getPontoAcesso().getCoordenadas(), coord,
@@ -1646,19 +1710,20 @@ public class MenuPrincipal extends JPanel {
 
 						distanciaCalculada = df.format(distanciaC) + "";
 						distanciaReal = df.format(distanciaR) + "";
-						erro = df.format(Math.abs(distanciaR - distanciaC))
+						*/
+						erro = df.format(Math.abs(sistemaLocalizacao.ditancia(coord,
+								coordenadaCalculada, escala)))
 								+ "";
 					}
 
 					PontoAcesso p = sinal.getPontoAcesso();
 					model.addRow(new Object[] { stringCoord, p.getSSID(),
 							p.getBSSID(), sinal.getFrequencia(),
-							sinal.getNivel(), distanciaReal,
-							distanciaCalculada, erro, "" });
+							sinal.getNivel(), erro, "" });
 				}
 			}
 		} else {
-			model.addRow(new Object[] { "", "", "", "", "", "", "", "", "" });
+			model.addRow(new Object[] { "", "", "", "", "", "", "" });
 		}
 		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
 		centerRenderer.setHorizontalAlignment(JLabel.CENTER);
@@ -1740,9 +1805,9 @@ public class MenuPrincipal extends JPanel {
 			if (this.table.equals(tablePontosAcesso)) {
 
 				fireEditingStopped();
-				Integer i = new Integer(linha + 1);
-				bd.removerPontoAcesso(pontosAcesso.get(i).getID());
-				pontosAcesso.remove(i);
+				Integer i = new Integer(linha);
+				bd.removerPontoAcesso(pontosAcesso.get(i+1).getID());
+				pontosAcesso.remove(i+1);
 				try {
 					atualizarPontosAcesso();
 				} catch (IOException e1) {
