@@ -42,6 +42,7 @@ public class PanZoom extends JComponent {
 	private int testeY = -1;
 	private Planta planta;
 	private Coordenadas posicaoCalculada = null;
+	private Coordenadas localizacao = null;
 	private BufferedImage icon = null;
 	private TreeMap<Integer, PontoAcesso> pontosAcesso;
 	private TreeMap<Coordenadas, ArrayList<Sinal>> sinais;
@@ -53,7 +54,7 @@ public class PanZoom extends JComponent {
 		this.planta = planta;
 		this.pontosAcesso = pontosAcesso;
 		this.sinais = new TreeMap<Coordenadas, ArrayList<Sinal>>();
-		this.pos = pos; 
+		this.pos = pos;
 		adicionarListerners();
 	}
 
@@ -110,6 +111,12 @@ public class PanZoom extends JComponent {
 	public void setPosicaoCalculada(Coordenadas posicaoCalculada) {
 		if (posicaoCalculada != null)
 			this.posicaoCalculada = posicaoCalculada;
+		repaint();
+	}
+
+	public void setLocalizacao(Coordenadas posicaoCalculada) {
+		if (posicaoCalculada != null)
+			this.localizacao = posicaoCalculada;
 		repaint();
 	}
 
@@ -216,8 +223,11 @@ public class PanZoom extends JComponent {
 		if (sinais != null && !sinais.isEmpty() && pos == 3) {
 			desenharSinais();
 		}
-		if (posicaoCalculada != null && pos >= 3  ) {
+		if (posicaoCalculada != null && pos == 3) {
 			desenharPosicaoCalculada();
+		}
+		if (localizacao != null && pos == 4) {
+			desenharLocalizacao();
 		}
 		g2d.dispose();
 	}
@@ -309,6 +319,21 @@ public class PanZoom extends JComponent {
 		}
 		g2d.drawImage(icon, (posicaoCalculada.getPosX() - (iconLarg / 2)),
 				(posicaoCalculada.getPosY() - (iconAlt / 2)), this);
+	}
+
+	/** Desenhar Localizacao */
+	public void desenharLocalizacao() {
+		int iconLarg = 0, iconAlt = 0;
+		try {
+			icon = ImageIO.read(MenuPrincipal.class
+					.getResource("../imagens/sinal.png"));
+			iconLarg = icon.getWidth(null);
+			iconAlt = icon.getHeight(null);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		g2d.drawImage(icon, (localizacao.getPosX() - (iconLarg / 2)),
+				localizacao.getPosY() - iconAlt, this);
 	}
 
 	private AffineTransform getCurrentTransform() {

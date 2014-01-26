@@ -1,138 +1,121 @@
 package sistemaLocalizacao;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 
 import classes.Coordenadas;
 import classes.DataSinais;
 import classes.Escala;
+import classes.ParametroG;
 import classes.Sinal;
 
 public class SistemaLocalizacao {
-
-	protected static float g = 1.3f;
-
-	public double caracterizacaoAmbiente(int rssiD0, int rssiD, int d) {
-		double n = (double) (rssiD0 - rssiD) / (10 * Math.log10(d / 100));
-		return n;
-	}
-
-	/** Conversão do RSSi em Distância em cm -> d e d0 = 100 também em cm
-	public double conversaoRSSiToDistancia(Sinal s) {
-		double distancia = (double) Math
-				.exp((s.getPontoAcesso().getNivelD0() - s.getNivel())
-						/ (10 * s.getPontoAcesso().getN()));
-		return distancia;
-	}
-	*/
-
-	// Distancia entre dois pontos (Coordenadas)
-	public double ditancia(Coordenadas p1, Coordenadas p2, Escala escala) {
-		double dx = (double) (p2.getPosX() - p1.getPosX()) / escala.escalaX();
-		double dy = (double) (p2.getPosY() - p1.getPosY()) / escala.escalaY();
-
-		double distancia = Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2));
-		return distancia;
-	}
-	
 	/*
-	public Coordenadas triangulacaoDistancias(ArrayList<Sinal> sinaisArray,
-			Escala escala) {
-		Coordenadas c = new Coordenadas();
-		int xmax = Integer.MIN_VALUE;
-		int xmin = Integer.MAX_VALUE;
-		int ymax = Integer.MIN_VALUE;
-		int ymin = Integer.MAX_VALUE;
-		double d_xmax = 0, d_xmin = 0, d_ymax = 0, d_ymin = 0;
-		for (Sinal sinal : sinaisArray) {
-			Coordenadas coordenadas = sinal.getPontoAcesso().getCoordenadas();
-			if (coordenadas != null) {
-				if (coordenadas.getPosX() > xmax) {
-					xmax = coordenadas.getPosX();
-					d_xmax = conversaoRSSiToDistancia(sinal) * escala.escalaX();
-				}
-				if (coordenadas.getPosX() < xmin) {
-					xmin = coordenadas.getPosX();
-					d_xmin = conversaoRSSiToDistancia(sinal) * escala.escalaX();
-				}
-				if (coordenadas.getPosY() > ymax) {
-					ymax = coordenadas.getPosY();
-					d_ymax = conversaoRSSiToDistancia(sinal) * escala.escalaY();
-				}
-				if (coordenadas.getPosY() < ymin) {
-					ymin = coordenadas.getPosY();
-					d_ymin = conversaoRSSiToDistancia(sinal) * escala.escalaY();
-				}
-			}
-		}
-
-		int u = xmax - xmin;
-		int v = ymax - ymin;
-		System.out.println("Tamanho X - " + u + "; Tamanho Y - " + v);
-		System.out.println("XMin - " + xmin + "; Xmax - " + xmax);
-		System.out.println("D_XMin - " + d_xmin + "; DXmax - " + d_xmax);
-		System.out.println("YMin - " + ymin + "; Ymax - " + ymax);
-		System.out.println("D_YMin - " + d_ymin + "; DYmax - " + d_ymax);
-		double x = (double) ((Math.pow(u, 2) + (Math.pow(d_xmin, 2) - Math.pow(
-				d_xmax, 2))) / (2 * u));
-
-		double y = (double) ((Math.pow(v, 2) + (Math.pow(d_ymin, 2) - Math.pow(
-				d_ymax, 2))) / (2 * v));
-
-		c.setPosX((int) Math.round(x));
-		c.setPosY((int) Math.round(y));
-		System.out.println("( " + c.getPosX() + "," + c.getPosY() + " )");
-		return c;
-	}
-	
-	
-	public Coordenadas triangulacaoDistancias2(ArrayList<Sinal> sinaisArray,
-			Escala escala) {
-		Coordenadas c = new Coordenadas();
-		double ponto[] = new double[sinaisArray.size()];
-		Integer x[] = new Integer[sinaisArray.size()];
-		Integer y[] = new Integer[sinaisArray.size()];
-		int i = 1;
-		for (Sinal sinal : sinaisArray) {
-			PontoAcesso aux = sinal.getPontoAcesso();
-			if (aux.getCoordenadas() != null) {
-				x[i] = aux.getCoordenadas().getPosX();
-				y[i] = aux.getCoordenadas().getPosY();
-				double distancia = conversaoRSSiToDistancia(sinal)
-						* escala.escalaY();
-				ponto[i] = (double) Math.pow(x[i], 2) + Math.pow(y[i], 2)
-						- Math.pow(distancia, 2);
-				i++;
-			}
-		}
-		int x32 = x[3] - x[2];
-		int x13 = x[2] - x[3];
-		int x21 = x[2] - x[1];
-		int y32 = y[3] - y[2];
-		int y13 = y[1] - y[3];
-		int y21 = y[2] - y[1];
-
-		double posX = (double) ((ponto[1] * y32) + (ponto[2] * y13) + (ponto[3] * y21))
-				/ (2 * ((x[1] * y32) + (x[2] * y13) + (x[3] * y21)));
-
-		double posY = (double) ((ponto[1] * x32) + (ponto[2] * x13) + (ponto[3] * x21))
-				/ (2 * ((y[1] * x32) + (y[2] * x13) + (y[3] * x21)));
-
-		c.setPosX((int) Math.round(posX));
-		c.setPosY((int) Math.round(posY));
-		System.out.println("( " + c.getPosX() + "," + c.getPosY() + " )");
-		return c;
-	}
+	 * protected float g = 1.3f;
+	 * 
+	 * 
+	 * public void setG(float g) { this.g = g; }
 	 */
-	public Coordenadas triangulacaoDistancias3(ArrayList<Sinal> sinaisArray) {
 
+	private Escala escala;
+
+	public SistemaLocalizacao(Escala escala) {
+		this.escala = escala;
+	}
+
+	/** PARAMETRO G */
+	// Método para iniciar o conjunto de parametros utilizados nos testes [0-5]
+	// em intervalos de 0.2
+	public ArrayList<ParametroG> popularParametroG() {
+		ArrayList<ParametroG> parametrosG = new ArrayList<ParametroG>();
+
+		BigDecimal step = new BigDecimal("0.1");
+		for (BigDecimal value = BigDecimal.ZERO; value.compareTo(BigDecimal
+				.valueOf(3)) <= 0; value = value.add(step)) {
+			parametrosG.add(new ParametroG(value.doubleValue()));
+		}
+
+		return parametrosG;
+	}
+
+	// Atualziar parametros g para cada conjunto de sinais da base de dados
+	public ArrayList<ParametroG> atualizarParametrosG(Coordenadas coordReal,
+			ArrayList<Sinal> sinaisArray, ArrayList<ParametroG> parametrosG) {
+
+		// Calcular o erro das distâncias (Real e Calculada) para todos os
+		// parametro de g
+		for (ParametroG parametroG : parametrosG) {
+			// Calcular posição através do algoritmo para um g específico
+			Coordenadas coordCalculada = algotitmoLocalizacao(sinaisArray,
+					parametroG.getG());
+			// Calcular erro entre a distância real e a calculada para o g
+			// específico
+			if (coordReal != null && coordCalculada != null) {
+				double erro = distancia(coordReal, coordCalculada);
+
+				// Atualizar variaveis do parametro (erro mínimo, erro máximo,
+				// sumatório dos erro e número de medições (estes últimos
+				// utilizados para calcular a média do erro para cada g))
+				if (erro < parametroG.getErroMin())
+					parametroG.setErroMin(erro);
+				if (erro > parametroG.getErroMax())
+					parametroG.setErroMax(erro);
+				parametroG.atualizarErro_Medicoes(erro);
+			}
+		}
+
+		return parametrosG;
+	}
+
+	// Calcular o parametro de g otimo do conjunto de parametos g
+
+	// Descobrir o melhor parametro g (menor média de erros) double
+	public double parametroG_otimo(ArrayList<ParametroG> parametrosG) {
+		double g_otimo = 0;
+		double menor_erro = Double.MAX_VALUE;
+		for (ParametroG parametroG : parametrosG) {
+			double media_erro = parametroG.getErroSum()
+					/ parametroG.getNumMedicoes();
+			if (media_erro < menor_erro) {
+				menor_erro = media_erro;
+				g_otimo = parametroG.getG();
+			}
+		}
+		return g_otimo;
+	}
+
+	// Imprimir estatisticas do parametro g
+	public void estatisticas(ArrayList<ParametroG> parametrosG) {
+		System.out
+				.println("|\tParametro g\t|\tErro Mín.\t|\tErro Max.\t|\tErro Médio\t|");
+		for (ParametroG parametroG : parametrosG) {
+			System.out.println(parametroG.toString());
+		}
+	}
+
+	/** DISTÂNCIAS */
+	// Distancia entre dois pontos (Coordenadas)
+	public double distancia(Coordenadas p1, Coordenadas p2) {
+		double dx = (double) (p2.getPosX() - p1.getPosX());
+		double dy = (double) (p2.getPosY() - p1.getPosY());
+
+		double distancia = (double) Math
+				.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2));
+		return distancia * escala.escala();
+	}
+
+	/** Algoritmo */
+	// Algoritmo de localização Weighed Centroid
+	public Coordenadas algotitmoLocalizacao(ArrayList<Sinal> sinaisArray,
+			double g) {
 		ArrayList<DataSinais> dataSinaisArray = new ArrayList<DataSinais>();
 
 		if (sinaisArray.size() > 3) {
-			float sumRssi = 0;
+			double sumRssi = 0;
 
 			for (Sinal sinal : sinaisArray) {
 				if (sinal.getPontoAcesso().getCoordenadas() != null) {
-					float newRssi = (float) Math.pow(
+					double newRssi = (double) Math.pow(
 							Math.pow(10, sinal.getNivel() / 20), g);
 					sumRssi += newRssi;
 					dataSinaisArray.add(new DataSinais(sinal.getPontoAcesso()
@@ -145,7 +128,7 @@ public class SistemaLocalizacao {
 			int y = 0;
 
 			for (DataSinais sinal : dataSinaisArray) {
-				float weight = sinal.getRssi() / sumRssi;
+				double weight = sinal.getRssi() / sumRssi;
 				x += sinal.getX() * weight;
 				y += sinal.getY() * weight;
 			}
@@ -155,4 +138,21 @@ public class SistemaLocalizacao {
 			return null;
 		}
 	}
+
+	public Coordenadas melhorParametro(Coordenadas c, ArrayList<Sinal> sinaisArray,
+			ArrayList<ParametroG> parametrosG) {
+		Coordenadas posCalculada, coord = new Coordenadas();
+		double erro, menor_erro = Double.MAX_VALUE;
+		for (ParametroG parametroG : parametrosG) {
+			posCalculada = algotitmoLocalizacao(sinaisArray, parametroG.getG());
+			erro = distancia(c, posCalculada);
+			if(erro < menor_erro){
+				menor_erro = erro;
+				coord = posCalculada;
+			}
+		}
+		return coord;
+
+	}
+
 }

@@ -517,6 +517,7 @@ public class BaseDados {
 				}
 				count++;
 			}
+			removerCoordenadas(coord.getID());
 		}
 		return sinais;
 	}

@@ -13,20 +13,20 @@ public class DataSinais {
 	/**
 	 * @uml.property name="x"
 	 */
-	protected float x;
+	protected int x;
 	/**
 	 * @uml.property name="y"
 	 */
-	protected float y;
+	protected int y;
 	/**
 	 * @uml.property name="rssi"
 	 */
-	protected float rssi;
+	protected double rssi;
 
 	public DataSinais() {
 	}
 
-	public DataSinais(float x, float y, float rssi) {
+	public DataSinais(int x, int y, double rssi) {
 		this.x = x;
 		this.y = y;
 		this.rssi = rssi;
@@ -36,7 +36,7 @@ public class DataSinais {
 	 * @return
 	 * @uml.property name="x"
 	 */
-	public float getX() {
+	public int getX() {
 		return x;
 	}
 
@@ -44,7 +44,7 @@ public class DataSinais {
 	 * @param x
 	 * @uml.property name="x"
 	 */
-	public void setX(float x) {
+	public void setX(int x) {
 		this.x = x;
 	}
 
@@ -52,7 +52,7 @@ public class DataSinais {
 	 * @return
 	 * @uml.property name="y"
 	 */
-	public float getY() {
+	public int getY() {
 		return y;
 	}
 
@@ -60,7 +60,7 @@ public class DataSinais {
 	 * @param y
 	 * @uml.property name="y"
 	 */
-	public void setY(float y) {
+	public void setY(int y) {
 		this.y = y;
 	}
 
@@ -68,7 +68,7 @@ public class DataSinais {
 	 * @return
 	 * @uml.property name="rssi"
 	 */
-	public float getRssi() {
+	public double getRssi() {
 		return rssi;
 	}
 
@@ -76,7 +76,7 @@ public class DataSinais {
 	 * @param rssi
 	 * @uml.property name="rssi"
 	 */
-	public void setRssi(float rssi) {
+	public void setRssi(double rssi) {
 		this.rssi = rssi;
 	}
 

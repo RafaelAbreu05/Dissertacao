@@ -36,6 +36,12 @@ public class Escala {
 	}
 
 	/** Funções */
+	public double escala() {
+		double escalaX = planta.getLarguraReal() / planta.getLargura();
+		double escalaY = planta.getAlturaReal() / planta.getAltura();
+		double e = (escalaX + escalaY) / 2;
+		return e;
+	}
 
 	// Escala X e Y
 	public int escalaX() {
@@ -87,13 +93,15 @@ public class Escala {
 		Coordenadas c = new Coordenadas();
 		c.setPosX((int) coordenadaX);
 		c.setPosY((int) coordenadaY);
-		return c;
+		return coordenadasToPixel(c);
 	}
 
 	// Coordenadas -> Pixel
 	public Coordenadas coordenadasToPixel(Coordenadas c) {
 		Coordenadas pixeis = new Coordenadas();
 		int x_pixeis, y_pixeis;
+		System.out.println(c.getPosX());
+		System.out.println(numCoordenadasX());
 		if (c.getPosX() == numCoordenadasX())
 			x_pixeis = (escalaX() * (numCoordenadasX() - 1))
 					+ (planta.getLargura() - (escalaX() * (numCoordenadasX() - 1)))
@@ -108,6 +116,8 @@ public class Escala {
 					/ 2;
 		else
 			y_pixeis = (c.getPosY() * escalaY()) - (escalaY() / 2);
+
+		System.out.println(x_pixeis);
 
 		pixeis.setPosX(x_pixeis);
 		pixeis.setPosY(y_pixeis);
