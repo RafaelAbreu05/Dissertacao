@@ -87,10 +87,11 @@ public class ParametroG {
 	/** ToString */
 	public String toString() {
 		DecimalFormat df = new DecimalFormat("#.##");
-		if (g != -1){
+		if (g != -1) {
 			double media = erroSum / numMedicoes;
-			return ("|\t"+ g + "\t\t|\t" + df.format(erroMin) + "\t\t|\t" + df.format(erroMax) + "\t\t|\t"
-					+ df.format(media) + "\t\t|");
+			return ("|\t" + g + "\t\t|\t" + df.format(erroMin) + "\t\t|\t"
+					+ df.format(erroMax) + "\t\t|\t" + df.format(erroSum)
+					+ "\t\t|\t" + df.format(media) + "\t\t|");
 		}
 		return "Parametro g desconhecido";
 	}

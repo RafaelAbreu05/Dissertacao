@@ -1279,11 +1279,9 @@ public class MenuPrincipal extends JPanel {
 				if (!s.isEmpty()) {
 
 					imagemLocalizacao.setLocalizacao(sistemaLocalizacao
-							.algotitmoLocalizacao(s, g));
-
-					System.out.println(sistemaLocalizacao.algotitmoLocalizacao(
-							s, g).toString());
+							.algoritmoLocalizacao(s, g, 2));
 				}
+
 			}
 		});
 		panel_13.add(localizar);
@@ -1386,16 +1384,11 @@ public class MenuPrincipal extends JPanel {
 					imagemTreino.setPosicaoCalculada(null);
 					if (!s.isEmpty()) {
 						Coordenadas posCalculada = sistemaLocalizacao
-								.algotitmoLocalizacao(s, g);
-						// Coordenadas posCalculada1 =
-						// escala.pixelToCoordenadas(
-						// posCalculada.getPosX(), posCalculada.getPosY());
-
-						// Coordenadas posCalculada2 = escala
-						// .coordenadasToPixel(posCalculada1);
+								.algoritmoLocalizacao(s, g, 2);
+						posCalculada = escala.pixelToCoordenadas(
+								posCalculada.getPosX(), posCalculada.getPosY());
 						id = bd.novasCoordenadas(posCalculada);
 						posCalculada.setID(id);
-						System.out.println(posCalculada.toString());
 						imagemTreino.setPosicaoCalculada(posCalculada);
 
 						sinais.put(c, s);
@@ -1621,9 +1614,10 @@ public class MenuPrincipal extends JPanel {
 		DefaultTableModel model = (DefaultTableModel) tableTreino.getModel();
 
 		model.setNumRows(0);
-
+		parametrosG = sistemaLocalizacao.popularParametroG();
+		ArrayList<ParametroG> parametrosG1 = sistemaLocalizacao
+				.popularParametroG();
 		if (!sinais.isEmpty()) {
-
 			java.util.Iterator<Entry<Coordenadas, ArrayList<Sinal>>> it = sinais
 					.entrySet().iterator();
 			while (it.hasNext()) {
@@ -1635,27 +1629,36 @@ public class MenuPrincipal extends JPanel {
 
 				String stringCoord = "(" + coord.getPosX() + " , "
 						+ coord.getPosY() + ")";
+				
 
-				Coordenadas coordenadaCalculada = new Coordenadas();
+				parametrosG1 = sistemaLocalizacao.atualizarParametrosG(coord,
+								sinaisArray, parametrosG1, 1);
+					
 				parametrosG = sistemaLocalizacao.atualizarParametrosG(coord,
-						sinaisArray, parametrosG);
-				g = sistemaLocalizacao.parametroG_otimo(parametrosG);
+						sinaisArray, parametrosG, 2);
 
-				coordenadaCalculada = sistemaLocalizacao.melhorParametro(coord,
+				double g_otimo = sistemaLocalizacao.melhorParametro(coord,
 						sinaisArray, parametrosG);
+				Coordenadas coordenadaCalculada = sistemaLocalizacao
+						.algoritmoLocalizacao(sinaisArray, g_otimo, 2);
 
 				DecimalFormat df = new DecimalFormat("#.##");
-				String erro = df.format(Math.abs(sistemaLocalizacao.distancia(coord,
-						coordenadaCalculada))) + "";
+				String erro = df.format(Math.abs(sistemaLocalizacao.distancia(
+						coord, coordenadaCalculada))) + "";
 
 				for (Sinal sinal : sinaisArray) {
 					PontoAcesso p = sinal.getPontoAcesso();
 					model.addRow(new Object[] { stringCoord, p.getSSID(),
 							p.getBSSID(), sinal.getFrequencia(),
-							sinal.getNivel(), g, erro, "" });
+							sinal.getNivel(), g_otimo, erro, "" });
 				}
 			}
+			System.out.println("Sem coordenadas");
+			sistemaLocalizacao.estatisticas(parametrosG1);
+			sistemaLocalizacao.parametroG_otimo(parametrosG1);
+			System.out.println("Com coordenadas");
 			sistemaLocalizacao.estatisticas(parametrosG);
+			g = sistemaLocalizacao.parametroG_otimo(parametrosG);
 		} else {
 			model.addRow(new Object[] { "", "", "", "", "", "", "", "" });
 		}

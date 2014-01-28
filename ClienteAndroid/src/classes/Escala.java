@@ -100,8 +100,6 @@ public class Escala {
 	public Coordenadas coordenadasToPixel(Coordenadas c) {
 		Coordenadas pixeis = new Coordenadas();
 		int x_pixeis, y_pixeis;
-		System.out.println(c.getPosX());
-		System.out.println(numCoordenadasX());
 		if (c.getPosX() == numCoordenadasX())
 			x_pixeis = (escalaX() * (numCoordenadasX() - 1))
 					+ (planta.getLargura() - (escalaX() * (numCoordenadasX() - 1)))
@@ -116,8 +114,6 @@ public class Escala {
 					/ 2;
 		else
 			y_pixeis = (c.getPosY() * escalaY()) - (escalaY() / 2);
-
-		System.out.println(x_pixeis);
 
 		pixeis.setPosX(x_pixeis);
 		pixeis.setPosY(y_pixeis);

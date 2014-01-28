@@ -1,6 +1,7 @@
 package sistemaLocalizacao;
 
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import classes.Coordenadas;
@@ -38,21 +39,22 @@ public class SistemaLocalizacao {
 		return parametrosG;
 	}
 
-	// Atualziar parametros g para cada conjunto de sinais da base de dados
+	// Atualizar parametros g para cada conjunto de sinais da base de dados
 	public ArrayList<ParametroG> atualizarParametrosG(Coordenadas coordReal,
-			ArrayList<Sinal> sinaisArray, ArrayList<ParametroG> parametrosG) {
-
+			ArrayList<Sinal> sinaisArray, ArrayList<ParametroG> parametrosG,
+			int tipo) {
 		// Calcular o erro das distâncias (Real e Calculada) para todos os
 		// parametro de g
 		for (ParametroG parametroG : parametrosG) {
+
 			// Calcular posição através do algoritmo para um g específico
-			Coordenadas coordCalculada = algotitmoLocalizacao(sinaisArray,
-					parametroG.getG());
+			Coordenadas coordCalculada = algoritmoLocalizacao(sinaisArray,
+					parametroG.getG(), tipo);
 			// Calcular erro entre a distância real e a calculada para o g
 			// específico
 			if (coordReal != null && coordCalculada != null) {
 				double erro = distancia(coordReal, coordCalculada);
-
+				// double sum = parametroG.getErroSum()+erro;
 				// Atualizar variaveis do parametro (erro mínimo, erro máximo,
 				// sumatório dos erro e número de medições (estes últimos
 				// utilizados para calcular a média do erro para cada g))
@@ -81,16 +83,21 @@ public class SistemaLocalizacao {
 				g_otimo = parametroG.getG();
 			}
 		}
+		DecimalFormat df = new DecimalFormat("#.##");
+		System.out.println("Parâmetro G otimo: " + g_otimo + " (Erro: "
+				+ df.format(menor_erro) + " metros)");
 		return g_otimo;
 	}
 
 	// Imprimir estatisticas do parametro g
 	public void estatisticas(ArrayList<ParametroG> parametrosG) {
 		System.out
-				.println("|\tParametro g\t|\tErro Mín.\t|\tErro Max.\t|\tErro Médio\t|");
+				.println("|\tParametro g\t|\tErro Mín.\t|\tErro Máx.\t|\tSumatório\t|\tErro Médio\t|");
 		for (ParametroG parametroG : parametrosG) {
 			System.out.println(parametroG.toString());
 		}
+		System.out.println("Número de treinos: "
+				+ parametrosG.get(0).getNumMedicoes());
 	}
 
 	/** DISTÂNCIAS */
@@ -106,8 +113,8 @@ public class SistemaLocalizacao {
 
 	/** Algoritmo */
 	// Algoritmo de localização Weighed Centroid
-	public Coordenadas algotitmoLocalizacao(ArrayList<Sinal> sinaisArray,
-			double g) {
+	public Coordenadas algoritmoLocalizacao(ArrayList<Sinal> sinaisArray,
+			double g, int tipo) {
 		ArrayList<DataSinais> dataSinaisArray = new ArrayList<DataSinais>();
 
 		if (sinaisArray.size() > 3) {
@@ -132,27 +139,30 @@ public class SistemaLocalizacao {
 				x += sinal.getX() * weight;
 				y += sinal.getY() * weight;
 			}
-			return new Coordenadas(x, y);
+			if (tipo == 1)
+				return new Coordenadas(x, y);
+			else
+				return escala.pixelToCoordenadas(x, y);
 
 		} else {
 			return null;
 		}
 	}
 
-	public Coordenadas melhorParametro(Coordenadas c, ArrayList<Sinal> sinaisArray,
+	public double melhorParametro(Coordenadas c, ArrayList<Sinal> sinaisArray,
 			ArrayList<ParametroG> parametrosG) {
-		Coordenadas posCalculada, coord = new Coordenadas();
+		double g_otimo = 0;
+		Coordenadas posCalculada;
 		double erro, menor_erro = Double.MAX_VALUE;
 		for (ParametroG parametroG : parametrosG) {
-			posCalculada = algotitmoLocalizacao(sinaisArray, parametroG.getG());
+			posCalculada = algoritmoLocalizacao(sinaisArray, parametroG.getG(),
+					2);
 			erro = distancia(c, posCalculada);
-			if(erro < menor_erro){
+			if (erro < menor_erro) {
 				menor_erro = erro;
-				coord = posCalculada;
+				g_otimo = parametroG.getG();
 			}
 		}
-		return coord;
-
+		return g_otimo;
 	}
-
 }

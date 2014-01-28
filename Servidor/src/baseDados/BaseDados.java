@@ -493,7 +493,7 @@ public class BaseDados {
 		int count = 1;
 		Iterator<Entry<Coordenadas, ArrayList<Sinal>>> it = sinais.entrySet()
 				.iterator();
-		while (it.hasNext()) {
+		while (it.hasNext() || count == i) {
 			Map.Entry<Coordenadas, ArrayList<Sinal>> sinaisAux = (Entry<Coordenadas, ArrayList<Sinal>>) it
 					.next();
 
@@ -502,7 +502,10 @@ public class BaseDados {
 			ArrayList<Sinal> sinaisArray = sinaisAux.getValue();
 			for (Sinal sinal : sinaisArray) {
 				if (count == i) {
-					PontoAcesso p = sinal.getPontoAcesso();
+					removerCoordenadas(coord.getID());
+					sinais = getAllSinais();
+					return sinais;
+					/*PontoAcesso p = sinal.getPontoAcesso();
 					try {
 						PreparedStatement statement = conn
 								.prepareStatement(Querys.removerSinal);
@@ -513,11 +516,10 @@ public class BaseDados {
 						e.printStackTrace();
 					}
 					sinais = getAllSinais();
-					return sinais;
+					return sinais;*/
 				}
 				count++;
 			}
-			removerCoordenadas(coord.getID());
 		}
 		return sinais;
 	}
